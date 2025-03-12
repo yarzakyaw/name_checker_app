@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:name_checker_app/core/mm_transcriptor.dart';
 import 'package:name_checker_app/core/utils/utils.dart';
 
@@ -169,6 +170,7 @@ String getPrefixSpilittedMap(String text, Map<String, String> wordDict) {
   } else {
     List<String> syllableList = syllableSplit(text);
     List<String> mergeList = mergeConsecutive(syllableList, wordDict);
+    debugPrint('mergeList: $mergeList');
     mappedWord = mergeList
         .asMap()
         .entries

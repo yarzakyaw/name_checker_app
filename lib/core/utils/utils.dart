@@ -83,7 +83,8 @@ List<String> mergeConsecutive(List<String> lst, Map<String, String> mapping) {
       String substring =
           lst.sublist(i, i + length).join(""); // Join consecutive elements
       if (mapping.containsKey(substring)) {
-        newList.add(mapping[substring]!); // Replace with mapped value
+        // newList.add(mapping[substring]!); // Replace with mapped value
+        newList.add(substring); // Replace with mapped key
         i += length; // Skip the matched elements
         matchFound = true;
         break; // Stop checking shorter lengths if match found
