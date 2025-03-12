@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:name_checker_app/core/theme/app_pallete.dart';
 
@@ -14,7 +15,7 @@ class SimpleButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: double.infinity,
+      width: kIsWeb ? MediaQuery.of(context).size.width / 2 : double.infinity,
       height: 60,
       child: ElevatedButton(
         onPressed: onPressed,
@@ -22,7 +23,7 @@ class SimpleButtonWidget extends StatelessWidget {
           text,
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
-            fontSize: 20,
+            fontSize: kIsWeb ? 24 : 20,
             fontWeight: FontWeight.bold,
             color: AppPallete.gradient7,
           ),

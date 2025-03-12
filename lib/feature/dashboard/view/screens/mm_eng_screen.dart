@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:name_checker_app/core/helpers/helper_getx_controller.dart';
 import 'package:name_checker_app/core/utils/mm_utils.dart';
@@ -5,6 +6,7 @@ import 'package:name_checker_app/core/theme/app_pallete.dart';
 
 import 'package:flutter/material.dart';
 import 'package:name_checker_app/core/utils/utils.dart';
+import 'package:name_checker_app/feature/dashboard/view/widgets/comment_widget.dart';
 
 class MmEngScreen extends StatefulWidget {
   final Map<String, String> mapping;
@@ -58,11 +60,14 @@ class _MmEngScreenState extends State<MmEngScreen> {
       appBar: AppBar(
         title: Text(
           "မြန်မာ-အင်္ဂလိပ်",
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontSize: kIsWeb ? 24 : 20,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(kIsWeb ? 32.0 : 16.0),
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -70,7 +75,10 @@ class _MmEngScreenState extends State<MmEngScreen> {
                 controller: _controller,
                 decoration: InputDecoration(
                   labelText: 'Enter Myanmar Name',
-                  labelStyle: TextStyle(color: AppPallete.gradient6),
+                  labelStyle: TextStyle(
+                    color: AppPallete.gradient6,
+                    fontSize: kIsWeb ? 22 : 18,
+                  ),
                   border: OutlineInputBorder(),
                 ),
                 style: TextStyle(color: AppPallete.whiteColor),
@@ -83,7 +91,7 @@ class _MmEngScreenState extends State<MmEngScreen> {
               Text(
                 'Standardized Transcription',
                 style: TextStyle(
-                    fontSize: 18,
+                    fontSize: kIsWeb ? 22 : 18,
                     fontWeight: FontWeight.bold,
                     color: AppPallete.gradient6),
               ),
@@ -97,24 +105,28 @@ class _MmEngScreenState extends State<MmEngScreen> {
                 width: double.infinity,
                 height: 80,
                 decoration: BoxDecoration(
-                    border: Border.all(color: AppPallete.gradient7, width: 3),
-                    borderRadius: BorderRadius.circular(10)),
+                  border: Border.all(
+                    color: AppPallete.gradient7,
+                    width: 3,
+                  ),
+                  borderRadius: BorderRadius.circular(10),
+                ),
                 child: Center(
                   child: Text(
                     outputText.toString(),
                     style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: AppPallete.whiteColor),
+                      fontSize: kIsWeb ? 22 : 18,
+                      fontWeight: FontWeight.bold,
+                      color: AppPallete.whiteColor,
+                    ),
                   ),
                 ),
               ),
               SizedBox(height: 20),
               outputText.isNotEmpty
-                  ? SizedBox(
-                      width: 200,
-                      height: 50,
-                      child: ElevatedButton(
+                  ? Align(
+                      alignment: Alignment.centerLeft,
+                      child: ElevatedButton.icon(
                         onPressed: () async {
                           final String textToCopy = outputText;
                           if (textToCopy.isNotEmpty) {
@@ -131,19 +143,23 @@ class _MmEngScreenState extends State<MmEngScreen> {
                             }
                           }
                         },
-                        child: Text(
-                          "Copy to Clipboard",
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            color: AppPallete.gradient7,
-                          ),
+                        icon: Icon(Icons.copy, size: kIsWeb ? 20 : 18),
+                        label: Text("Copy to Clipboard"),
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 16, vertical: kIsWeb ? 12 : 8),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                          elevation: 2,
                         ),
                       ),
                     )
                   : Container(),
-              SizedBox(height: 20),
+              outputText.isNotEmpty
+                  ? SizedBox(height: kIsWeb ? 40 : 20)
+                  : SizedBox(height: kIsWeb ? 140 : 70),
+              // Comments section
+              CommentWidget(),
             ],
           ),
         ),

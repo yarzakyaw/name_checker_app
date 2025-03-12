@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:name_checker_app/core/theme/app_pallete.dart';
@@ -41,7 +42,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.only(left: 8.0, top: 40.0),
+        padding: const EdgeInsets.only(left: 8.0, top: kIsWeb ? 10 : 40.0),
         child: Column(
           children: [
             Row(
@@ -60,7 +61,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      GestureDetector(
+                      InkWell(
                         onTap: () {
                           Navigator.push(
                             context,
@@ -90,7 +91,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         ),
                       ),
                       SizedBox(height: 15),
-                      GestureDetector(
+                      InkWell(
                         onTap: () {
                           Navigator.push(
                             context,
@@ -124,7 +125,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 ],
               ),
             ),
-            SizedBox(height: 200),
+            SizedBox(height: kIsWeb ? 130 : 200),
             Text(
               "အမည်စာလုံးပေါင်းဖလှယ်ခြင်းနည်းစနစ်",
               overflow: TextOverflow.ellipsis,
@@ -132,7 +133,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontWeight: FontWeight.w500,
-                  fontSize: 25,
+                  fontSize: kIsWeb ? 30 : 25,
                   color: AppPallete.gradient6),
             ),
             SizedBox(height: 30),
