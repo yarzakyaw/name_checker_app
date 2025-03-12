@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "640290034298",
+    "project_id": "name-checker-app",
+    "storage_bucket": "name-checker-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:640290034298:android:7e4d957b8e6cc9f60e61c3",
+        "android_client_info": {
+          "package_name": "com.example.name_checker_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTE3q-fxlcrzP2kDAKeoXC1EY--IkEnug"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
