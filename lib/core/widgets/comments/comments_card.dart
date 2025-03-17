@@ -1,9 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:name_checker_app/core/models/comment_model.dart';
+import 'package:name_checker_app/core/providers/comment_notifier.dart';
 import 'package:name_checker_app/core/theme/app_pallete.dart';
 
-class CommentsCard extends StatefulWidget {
+class CommentsCard extends ConsumerStatefulWidget {
   final CommentModel comment;
   final int depth;
   final Function(CommentModel) onReply;
@@ -16,10 +18,10 @@ class CommentsCard extends StatefulWidget {
   });
 
   @override
-  State<CommentsCard> createState() => _CommentsCardState();
+  ConsumerState<CommentsCard> createState() => _CommentsCardState();
 }
 
-class _CommentsCardState extends State<CommentsCard> {
+class _CommentsCardState extends ConsumerState<CommentsCard> {
   bool _isRepliesVisible = true;
 
   @override
@@ -53,26 +55,23 @@ class _CommentsCardState extends State<CommentsCard> {
                             fontSize: kIsWeb ? 18 : 16),
                       ),
                       SizedBox(width: 10),
-                      if (widget.comment.replies.isNotEmpty)
-                        IconButton(
-                          icon: Icon(
-                            _isRepliesVisible
-                                ? Icons.expand_less
-                                : Icons.expand_more,
-                            size: kIsWeb ? 20 : 18,
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              _isRepliesVisible = !_isRepliesVisible;
-                            });
-                          },
-                          tooltip: _isRepliesVisible
-                              ? "Hide replies"
-                              : "Show replies",
+                      IconButton(
+                        icon: Icon(
+                          _isRepliesVisible
+                              ? Icons.expand_less
+                              : Icons.expand_more,
+                          size: kIsWeb ? 20 : 18,
                         ),
+                        onPressed: () {
+                          setState(() {
+                            _isRepliesVisible = !_isRepliesVisible;
+                          });
+                        },
+                        tooltip:
+                            _isRepliesVisible ? "Hide replies" : "Show replies",
+                      ),
                     ],
                   ),
-
                   SizedBox(height: 4),
                   Text(widget.comment.content,
                       style: TextStyle(fontSize: kIsWeb ? 16 : 14)),
@@ -86,15 +85,35 @@ class _CommentsCardState extends State<CommentsCard> {
             ),
           ),
           // Recursively and conditionally render replies
-          if (_isRepliesVisible && widget.comment.replies.isNotEmpty)
-            Column(
-              children: widget.comment.replies
-                  .map((reply) => CommentsCard(
-                        comment: reply,
-                        depth: widget.depth + 1,
-                        onReply: widget.onReply,
-                      ))
-                  .toList(),
+          if (_isRepliesVisible)
+            FutureBuilder<List<CommentModel>>(
+              future: ref
+                  .read(commentNotifierProvider.notifier)
+                  .fetchReplies(widget.comment.id),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                if (snapshot.hasError) {
+                  return Text('Error: ${snapshot.error}');
+                }
+                final replies = snapshot.data ?? [];
+                if (replies.isEmpty) return SizedBox.shrink();
+                return Column(
+                  children: replies
+                      .map(
+                        (reply) => CommentsCard(
+                          comment: reply,
+                          depth: widget.depth + 1,
+                          onReply: widget.onReply,
+                        ),
+                      )
+                      .toList(),
+                );
+              },
             ),
         ],
       ),

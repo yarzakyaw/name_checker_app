@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:name_checker_app/feature/dashboard/view/widgets/tables/mm_cluster_table.dart';
-import 'package:name_checker_app/feature/dashboard/view/widgets/tables/mm_consonant_table.dart';
-import 'package:name_checker_app/feature/dashboard/view/widgets/listviews/notes_listview_widget.dart';
-import 'package:name_checker_app/feature/dashboard/view/widgets/tables/mm_vowel_table.dart';
+import 'package:name_checker_app/feature/dashboardReferences/view/widgets/tables/mm_cluster_table.dart';
+import 'package:name_checker_app/feature/dashboardReferences/view/widgets/tables/mm_consonant_table.dart';
+import 'package:name_checker_app/core/widgets/listviews/notes_listview_widget.dart';
+import 'package:name_checker_app/feature/dashboardReferences/view/widgets/tables/mm_vowel_table.dart';
 
 class MyanmarReferencesWidget extends StatelessWidget {
   const MyanmarReferencesWidget({super.key});

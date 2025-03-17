@@ -1,3 +1,6 @@
+import "package:flutter/material.dart";
+import "package:name_checker_app/core/constants/text_strings.dart";
+import "package:name_checker_app/core/theme/app_pallete.dart";
 import "package:unorm_dart/unorm_dart.dart" as unorm;
 
 String getRawUnicode(String text) {
@@ -97,4 +100,26 @@ List<String> mergeConsecutive(List<String> lst, Map<String, String> mapping) {
     }
   }
   return newList;
+}
+
+void showSnackBar(BuildContext context, String content) {
+  ScaffoldMessenger.of(context)
+    ..hideCurrentSnackBar()
+    ..showSnackBar(
+      SnackBar(
+        content: Text(content),
+        backgroundColor: AppPallete.gradient1,
+      ),
+    );
+}
+
+String? validatePassword(value) {
+  if (value == null || value.isEmpty) return tPasswordMissing;
+
+  String pattern = tPassStringPattern;
+  RegExp regex = RegExp(pattern);
+  if (!regex.hasMatch(value)) {
+    return tPasswordPattern;
+  }
+  return null;
 }

@@ -4,11 +4,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:name_checker_app/core/theme/app_pallete.dart';
-import 'package:name_checker_app/feature/dashboard/view/screens/about_screen.dart';
-import 'package:name_checker_app/feature/dashboard/view/screens/mm_eng_screen.dart';
-import 'package:name_checker_app/feature/dashboard/view/screens/pali_roman_screen.dart';
-import 'package:name_checker_app/feature/dashboard/view/screens/references_screen.dart';
-import 'package:name_checker_app/feature/dashboard/view/widgets/buttons/simple_button_widget.dart';
+import 'package:name_checker_app/feature/dashboardAbout/view/screens/about_screen.dart';
+import 'package:name_checker_app/feature/dashboardMmEng/view/screens/mm_eng_screen.dart';
+import 'package:name_checker_app/feature/dashboardPaliRoman/view/screens/pali_roman_screen.dart';
+import 'package:name_checker_app/feature/dashboardReferences/view/screens/references_screen.dart';
+import 'package:name_checker_app/core/widgets/buttons/simple_button_widget.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});

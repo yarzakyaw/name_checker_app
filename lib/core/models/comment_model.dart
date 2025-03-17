@@ -1,18 +1,14 @@
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
-
 class CommentModel {
   final String id;
   final String content;
   final String author;
-  final List<CommentModel> replies;
   final String? parentId;
   CommentModel({
     required this.id,
     required this.content,
     required this.author,
-    this.replies = const [],
     this.parentId,
   });
 
@@ -21,7 +17,6 @@ class CommentModel {
       id: id,
       content: content,
       author: author,
-      replies: [...replies, reply],
       parentId: parentId,
     );
   }
@@ -30,14 +25,12 @@ class CommentModel {
     String? id,
     String? content,
     String? author,
-    List<CommentModel>? replies,
     String? parentId,
   }) {
     return CommentModel(
       id: id ?? this.id,
       content: content ?? this.content,
       author: author ?? this.author,
-      replies: replies ?? this.replies,
       parentId: parentId ?? this.parentId,
     );
   }
@@ -47,7 +40,6 @@ class CommentModel {
       'id': id,
       'content': content,
       'author': author,
-      'replies': replies.map((x) => x.toMap()).toList(),
       'parentId': parentId,
     };
   }
@@ -57,11 +49,6 @@ class CommentModel {
       id: map['id'] ?? '',
       content: map['content'] ?? '',
       author: map['author'] ?? '',
-      replies: List<CommentModel>.from(
-        (map['replies'] ?? []).map<CommentModel>(
-          (x) => CommentModel.fromMap(x as Map<String, dynamic>),
-        ),
-      ),
       parentId: map['parentId'] ?? '',
     );
   }
@@ -73,7 +60,7 @@ class CommentModel {
 
   @override
   String toString() {
-    return 'CommentModel(id: $id, content: $content, author: $author, replies: $replies, parentId: $parentId)';
+    return 'CommentModel(id: $id, content: $content, author: $author, parentId: $parentId)';
   }
 
   @override
@@ -83,16 +70,11 @@ class CommentModel {
     return other.id == id &&
         other.content == content &&
         other.author == author &&
-        listEquals(other.replies, replies) &&
         other.parentId == parentId;
   }
 
   @override
   int get hashCode {
-    return id.hashCode ^
-        content.hashCode ^
-        author.hashCode ^
-        replies.hashCode ^
-        parentId.hashCode;
+    return id.hashCode ^ content.hashCode ^ author.hashCode ^ parentId.hashCode;
   }
 }

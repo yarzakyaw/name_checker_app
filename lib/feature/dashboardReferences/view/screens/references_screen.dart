@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:name_checker_app/core/theme/app_pallete.dart';
-import 'package:name_checker_app/feature/dashboard/view/widgets/mm_references_widget.dart';
-import 'package:name_checker_app/feature/dashboard/view/widgets/pali_references_widget.dart';
+import 'package:name_checker_app/feature/dashboardReferences/view/widgets/mm_references_widget.dart';
+import 'package:name_checker_app/feature/dashboardReferences/view/widgets/pali_references_widget.dart';
 
 class ReferencesWidget extends StatelessWidget {
   const ReferencesWidget({super.key});
