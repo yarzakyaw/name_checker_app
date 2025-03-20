@@ -6,7 +6,6 @@ import 'package:name_checker_app/core/theme/app_pallete.dart';
 
 import 'package:flutter/material.dart';
 import 'package:name_checker_app/core/utils/utils.dart';
-import 'package:name_checker_app/core/widgets/comments/comment_widget.dart';
 
 class MmEngScreen extends StatefulWidget {
   final Map<String, String> mapping;
