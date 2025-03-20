@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /private-folder/
+Sitemap: https://name-checker-app.web.app/sitemap.xml
