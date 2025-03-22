@@ -51,6 +51,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   'v2.0',
                   style: TextStyle(color: AppPallete.gradient6),
                 ),
+                SizedBox(width: 10),
+                Text(
+                  'မြန်မာစာဖွံ့ဖြိုးတိုးတက်ရေးစီမံကိန်း',
+                  style: TextStyle(color: AppPallete.gradient6),
+                ),
               ],
             ),
             Padding(
@@ -127,13 +132,24 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
             SizedBox(height: kIsWeb ? 130 : 200),
             Text(
+              "Name Transcription System",
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: kIsWeb ? 25 : 20,
+                  color: AppPallete.gradient6),
+            ),
+            SizedBox(height: 10),
+            Text(
               "အမည်စာလုံးပေါင်းဖလှယ်ခြင်းနည်းစနစ်",
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontWeight: FontWeight.w500,
-                  fontSize: kIsWeb ? 30 : 25,
+                  fontSize: kIsWeb ? 25 : 20,
                   color: AppPallete.gradient6),
             ),
             SizedBox(height: 30),

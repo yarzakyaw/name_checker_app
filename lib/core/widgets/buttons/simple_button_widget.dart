@@ -23,7 +23,7 @@ class SimpleButtonWidget extends StatelessWidget {
           text,
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
-            fontSize: kIsWeb ? 24 : 20,
+            fontSize: kIsWeb ? 20 : 18,
             fontWeight: FontWeight.bold,
             color: AppPallete.gradient7,
           ),
