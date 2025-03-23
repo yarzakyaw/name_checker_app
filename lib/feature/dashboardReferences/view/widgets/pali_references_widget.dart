@@ -69,7 +69,7 @@ class PaliReferencesWidget extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                "ကျမ်းကိုး- The Pali Alphabet in Myanmar and Roman Characters (ပဋ္ဌာနပါဠိ- ပဋ္ဌမတွဲ)။",
+                "ကျမ်းကိုး- The Pali Alphabet in Myanmar and Roman Characters (ပဋ္ဌာနပါဠိ- ပဋ္ဌမတွဲ)၊ မြန်မာစာ မြန်မာမှု ပါဠိအဘိဓါန်သစ် [ဦးမြတ်ကျော် (မြန်မာစာ အဖွဲ့ဝင်)]၊ ပဒတ္ထမဉ္ဇူသာ ဟူသော ပါဠိ-မြန်မာအဘိဓါန် (ဦးဟုတ်စိန်)။",
                 style: TextStyle(
                     fontSize: 16,
                     fontFamily: "Pyidaungsu",
