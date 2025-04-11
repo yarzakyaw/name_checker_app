@@ -94,12 +94,12 @@ class _MmEngScreenState extends State<MmEngScreen> {
                     fontWeight: FontWeight.bold,
                     color: AppPallete.gradient6),
               ),
-              SizedBox(height: 20),
-              /* Text(
+              /* SizedBox(height: 20),
+              Text(
               inputCodePoint,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 20), */
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppPallete.whiteColor),
+              ), */
+            SizedBox(height: 20),
               Container(
                 width: double.infinity,
                 height: 80,

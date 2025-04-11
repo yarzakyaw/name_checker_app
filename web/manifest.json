@@ -1,6 +1,6 @@
 {
-    "name": "name_checker_app",
-    "short_name": "name_checker_app",
+    "name": "Myan Name Checker",
+    "short_name": "Name Checker",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
