@@ -21,6 +21,7 @@ class _PaliRomanScreenState extends State<PaliRomanScreen> {
   String inputText = '';
   String inputCodePoint = '';
   String outputText = '';
+  final FocusNode _focusNode = FocusNode();
 
   void convertPaliToRoman(Map<String, String> wordDict) {
     String mappedString;
@@ -48,6 +49,7 @@ class _PaliRomanScreenState extends State<PaliRomanScreen> {
   @override
   void dispose() {
     _controller.dispose();
+    _focusNode.dispose();
     super.dispose();
   }
 
@@ -78,6 +80,29 @@ class _PaliRomanScreenState extends State<PaliRomanScreen> {
                   convertPaliToRoman(widget.mapping);
                 },
               ),
+              /* Focus(
+                focusNode: _focusNode,
+                child: GestureDetector(
+                  onTap: () {
+                    _focusNode.requestFocus();
+                  },
+                  child: AbsorbPointer(
+                    child: TextField(
+                      controller: _controller,
+                      decoration: InputDecoration(
+                        labelText: 'Enter P\u0101\u1e37i Text',
+                        labelStyle: TextStyle(color: AppPallete.gradient6),
+                        border: OutlineInputBorder(),
+                      ),
+                      style: TextStyle(color: AppPallete.whiteColor),
+                      onChanged: (value) {
+                        inputText = normalizeText(value);
+                        convertPaliToRoman(widget.mapping);
+                      },
+                    ),
+                  ),
+                ),
+              ), */
               SizedBox(height: 20),
               Text(
                 'Standardized Transliteration',

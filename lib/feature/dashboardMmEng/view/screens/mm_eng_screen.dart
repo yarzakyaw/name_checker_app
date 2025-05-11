@@ -22,8 +22,26 @@ class _MmEngScreenState extends State<MmEngScreen> {
   String inputText = '';
   String inputCodePoint = '';
   String outputText = '';
+  // bool isLoading = false;
+  final FocusNode _focusNode = FocusNode();
 
-  void convertName(Map<String, String> wordDict) {
+  /* @override
+  void initState() {
+    super.initState();
+    _focusNode.addListener(() {
+      if (_focusNode.hasFocus) {
+        setState(() {
+          isLoading = true;
+        });
+      } else {
+        setState(() {
+          isLoading = false;
+        });
+      }
+    });
+  } */
+
+  void convertName(Map<String, String> wordDict) async {
     String mappedNames;
 
     // Step 1: Preprocess
@@ -50,6 +68,7 @@ class _MmEngScreenState extends State<MmEngScreen> {
   @override
   void dispose() {
     _controller.dispose();
+    _focusNode.dispose();
     super.dispose();
   }
 
@@ -86,41 +105,75 @@ class _MmEngScreenState extends State<MmEngScreen> {
                   convertName(widget.mapping);
                 },
               ),
-              SizedBox(height: 20),
-              Text(
-                'Standardized Transcription',
-                style: TextStyle(
-                    fontSize: kIsWeb ? 22 : 18,
-                    fontWeight: FontWeight.bold,
-                    color: AppPallete.gradient6),
-              ),
-              /* SizedBox(height: 20),
-              Text(
-              inputCodePoint,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppPallete.whiteColor),
-              ), */
-            SizedBox(height: 20),
-              Container(
-                width: double.infinity,
-                height: 80,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: AppPallete.gradient7,
-                    width: 3,
-                  ),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Center(
-                  child: Text(
-                    outputText.toString(),
-                    style: TextStyle(
-                      fontSize: kIsWeb ? 22 : 18,
-                      fontWeight: FontWeight.bold,
-                      color: AppPallete.whiteColor,
+              /* Focus(
+                focusNode: _focusNode,
+                child: GestureDetector(
+                  onTap: () {
+                    _focusNode.requestFocus();
+                  },
+                  child: AbsorbPointer(
+                    child: TextField(
+                      controller: _controller,
+                      decoration: InputDecoration(
+                        labelText: 'Enter Myanmar Name',
+                        labelStyle: TextStyle(
+                          color: AppPallete.gradient6,
+                          fontSize: kIsWeb ? 22 : 18,
+                        ),
+                        border: OutlineInputBorder(),
+                      ),
+                      style: TextStyle(color: AppPallete.whiteColor),
+                      onChanged: (value) {
+                        inputText = normalizeText(value);
+                        convertName(widget.mapping);
+                      },
                     ),
                   ),
                 ),
+              ), */
+              SizedBox(height: 20),
+              Column(
+                children: [
+                  Text(
+                    'Standardized Transcription',
+                    style: TextStyle(
+                        fontSize: kIsWeb ? 22 : 18,
+                        fontWeight: FontWeight.bold,
+                        color: AppPallete.gradient6),
+                  ),
+                  SizedBox(height: 20),
+                  Container(
+                    width: double.infinity,
+                    height: 80,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: AppPallete.gradient7,
+                        width: 3,
+                      ),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Center(
+                      child: Text(
+                        outputText.toString(),
+                        style: TextStyle(
+                          fontSize: kIsWeb ? 22 : 18,
+                          fontWeight: FontWeight.bold,
+                          color: AppPallete.whiteColor,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
+              /* SizedBox(height: 20),
+              Text(
+                inputCodePoint,
+                style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: AppPallete.whiteColor),
+              ), */
+
               SizedBox(height: 20),
               outputText.isNotEmpty
                   ? Align(

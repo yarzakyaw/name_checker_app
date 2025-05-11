@@ -33,19 +33,26 @@ class MmVowelTable extends StatelessWidget {
         "အိ / ဣ / ၏ / အည့်",
         "/i./",
         "ei",
-        "အိအိချွန်/ ဖူးပြည့်ခိုင် အိနန္ဒာကျော့",
-        "Ei Ei Chun/ Phoo Pyei Khaing Ei Nandar Kyawt"
+        "အိအိချွန်/ ဖူးပြည့်ခိုင်/ အိနန္ဒာကျော့",
+        "Ei Ei Chun/ Phoo Pyei Khaing/ Ei Nandar Kyawt"
       ],
       ["၇", "အီး / အည်း", "/i:/", "ee", "နတ်သမီး", "Nat Tha Mee"],
-      ["၈", "အူ / ဦ", "/u/", "uu", "မအူပင်/ပခုက္ကူ", "Ma Ouu Pin/ Pa Khoatkuu"],
+      [
+        "၈",
+        "အူ / ဦ",
+        "/u/",
+        "uu",
+        "သူဇာ/မူမူခိုင်",
+        "Thuu Zar/ Muu Muu Khaing"
+      ],
       ["၉", "အု / ဥ", "/u./", "ou/u", "ရွှေဥ/ယုယု", "Shway Ou/Yu Yu"],
       [
         "၁၀",
         "အူး / ဦး",
         "/u:/",
-        "oo/U",
-        "ဦးမြဦး/ ဖူးဖူး",
-        "U Mya Oo/ Phoo Phoo"
+        "oo/U/ue",
+        "ဦးမြဦး/ ဖူးဖူး/ မှူးမှူး",
+        "U Mya Oo/ Phoo Phoo/ Hmue Hmue"
       ],
       ["၁၁", "အေ / ဧ", "/ei/", "ay", "ဖေမြင့်", "Phay Myint"],
       [
@@ -59,7 +66,7 @@ class MmVowelTable extends StatelessWidget {
       ["၁၃", "အေး", "/ei:/", "aye", "ဒေါ်အေးအေးမြင့်", "Daw Aye Aye Myint"],
       ["၁၄", "အယ်", "/e/", "el", "မိုးမြင့်ကြယ်", "Moe Myint Kyel"],
       ["၁၅", "အဲ့ / အယ့်", "/e./", "elt", "လဲ့လဲ့ဝင်း", "Lelt Lelt Winn"],
-      ["၁၆", "အဲ", "/e:/", "ell", "စောခူဆဲ", "Saww Khuu Sell"],
+      ["၁၆", "အဲ", "/e:/", "ell", "စောခူဆဲ", "Saww Khuu Hsell"],
       [
         "၁၇",
         "အော် / ‌ဪ",
@@ -88,7 +95,7 @@ class MmVowelTable extends StatelessWidget {
         "Mg Thar Noe/ Pya Oe"
       ],
       ["၂၃", "အက်", "/e'/", "et", "ခင်ခက်ခက်ခိုင်", "Khin Khet Khet Khaing"],
-      ["၂၄", "အောက်", "/au'/", "auk", "ကျောက်ဆည်", "Kyauk Hsi"],
+      ["၂၄", "အောက်", "/au'/", "auk", "မောင်ပေါက်စီ", "Mg Pauk Se"],
       ["၂၅", "အိုက်", "/ai'/", "aik", "ဦးတိုက်စံ", "U Taik Sam"],
       ["၂၆", "အင် / အဉ်", "/in/", "in", "ထူးအိမ်သင်", "Htoo Eim Thin"],
       ["၂၇", "အင့် / အဉ့်", "/in./", "int", "မြင့်သူ", "Myint Thuu"],
@@ -111,7 +118,7 @@ class MmVowelTable extends StatelessWidget {
       ],
       ["၃၁", "အောင်း", "/aun:/", "oung", "အောင်မောင်း", "Aung Moung"],
       ["၃၂", "အိုင်", "/ain/", "aing", "ဇော်ပိုင်", "Zaw Paing"],
-      ["၃၃", "အိုင့်", "/ain./", "aint", "ထီးချိုင့်", "Htee Chaint"],
+      ["၃၃", "အိုင့်", "/ain./", "aint", "တစ်လုံးချိုင့်", "Tit Lome Chaint"],
       [
         "၃၄",
         "အိုင်း",
@@ -126,8 +133,8 @@ class MmVowelTable extends StatelessWidget {
         "အတ် / အပ်",
         "/a'/",
         "at/ap/-ao",
-        "မြတ်ကျော်/ဇလပ်ဖြူ/စဝ်ခွန်မိန်း",
-        "Myat Kyaw/Za Lap PhyuuSaoKhunMeinn"
+        "မြတ်ကျော်/ ဇလပ်ဖြူ/ စဝ်ခွန်မိန်း",
+        "Myat Kyaw/ Za Lap Phyuu/ Sao Khun Meinn"
       ],
       [
         "၃၇",
@@ -150,8 +157,8 @@ class MmVowelTable extends StatelessWidget {
         "အန် / အမ်/ အံ",
         "/an/",
         "an/am",
-        "ရန်ကုန်/ဘားအံ",
-        "Yan Koun/Barr Am"
+        "ရန်နိုင်/ဦးယံ",
+        "Yan Naing/U Yam"
       ],
       [
         "၄၀",
@@ -173,25 +180,25 @@ class MmVowelTable extends StatelessWidget {
         "၄၂",
         "အိန် / အိမ်",
         "/ein/",
-        "ein/eim",
-        "စိန်စိန်/ထူးအိမ်သင်",
-        "Sein Sein/Htoo Eim Thin"
+        "ein/ eim",
+        "စိန်စိန်/ ထူးအိမ်သင်",
+        "Sein Sein/ Htoo Eim Thin"
       ],
       [
         "၄၃",
         "အိန့် / အိမ့်",
         "/ein./",
         "eint/eimt",
-        "အိမ့်နေခြည်/မောင်စိမ့်",
-        "Eimt Nay Chi/Mg Seimt"
+        "အိမ့်နေခြည်/ မောင်စိမ့်",
+        "Eimt Nay Chi/ Mg Seimt"
       ],
       [
         "၄၄",
         "အိန်း / အိမ်း",
         "/ein:/",
         "einn/eimm",
-        "သိန်းသန်းစိုး/စိမ်းစိမ်းဦး",
-        "Theinn Thann Soe/Seimm Seimm Oo"
+        "သိန်းသန်းစိုး/ စိမ်းစိမ်းဦး",
+        "Theinn Thann Soe/ Seimm Seimm Oo"
       ],
       [
         "၄၅",
@@ -238,7 +245,7 @@ class MmVowelTable extends StatelessWidget {
 
       // Add more rows based on the table in the PDF
     ];
-    final List<double> columnWidths = [50, 100, 150, 150, 120, 120];
+    final List<double> columnWidths = [50, 100, 150, 150, 150, 200];
     return Padding(
       padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
       child: SizedBox(

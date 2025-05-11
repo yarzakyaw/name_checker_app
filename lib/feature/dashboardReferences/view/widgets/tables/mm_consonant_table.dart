@@ -19,7 +19,7 @@ class MmConsonantTable extends StatelessWidget {
       ["၁", "က", "/k/", "ka", "ကလေး", "Ka laye"],
       ["၂", "ခ", "/kh/", "kha", "ခရေ", "Kha Yay"],
       ["၃", "ဂ/ဃ", "/g/", "ga", "ဂမုန်းပွင့်", "Ga Mone Pwint"],
-      ["၄", "င", "/ng/", "nga", "ငပလီ", "Nga Pa Li"],
+      ["၄", "င", "/ng/", "nga", "ငပလီ", "Nga Pa Le"],
       ["၅", "စ", "/s/", "sa", "စမုန်မြစ်", "Sa Moun Myit"],
       ["၆", "ဆ", "/hs/", "hsa", "ဆလတ်ရွက်", "Hsa Lat Ywet"],
       ["၇", "ဇ / ဈ", "/z/", "za", "ဇလပ်ဝါ", "Za Lap War"],
@@ -33,7 +33,7 @@ class MmConsonantTable extends StatelessWidget {
       ["၁၅", "ဗ / ဘ", "/b/", "ba", "ဘစိုင်းဝဏ္ဏ", "Ba Sai Wunna"],
       ["၁၆", "မ", "/m/", "ma", "မခင်ငွေ", "Ma Khin Ngway"],
       ["၁၇", "ယ", "/j/", "ya", "ယမုန်နာ", "Ya Moun Nar"],
-      ["၁၈", "ရ", "/r/", "ya/ra", "ရန်ကုန်/ရခိုင်", "Yan Koun/Rakhaing"],
+      ["၁၈", "ရ", "/r/", "ya/ra", "ရန်အောင်/သူရ", "Yan Aung/Thuura"],
       ["၁၉", "လ / ဠ", "/l/", "la", "လမင်းအောင်", "La Minn Aung"],
       ["၂၀", "ဝ", "/w/", "wa", "ဝဥ", "Wa Ou"],
       ["၂၁", "သ", "/th/", "tha", "သမင်", "Tha Min"],
@@ -52,7 +52,7 @@ class MmConsonantTable extends StatelessWidget {
 
       // Add more rows based on the table in the PDF
     ];
-    final List<double> columnWidths = [50, 100, 150, 150, 120, 120];
+    final List<double> columnWidths = [50, 100, 150, 150, 150, 200];
     return Padding(
       padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
       child: SizedBox(

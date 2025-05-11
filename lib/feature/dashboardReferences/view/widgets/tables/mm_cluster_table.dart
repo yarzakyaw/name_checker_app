@@ -22,7 +22,7 @@ class MmClusterTable extends StatelessWidget {
 
       // Add more rows based on the table in the PDF
     ];
-    final List<double> columnWidths = [50, 100, 150, 150, 120, 120];
+    final List<double> columnWidths = [50, 100, 150, 150, 150, 200];
     return Padding(
       padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
       child: SizedBox(

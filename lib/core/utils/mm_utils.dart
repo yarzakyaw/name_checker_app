@@ -12,7 +12,9 @@ final List<String> allPrefixes = [
   "ဆရာတော်",
   "ဆရာမ",
   "ဆရာ",
+  "သုဓမ္မာ",
   "သုဓမ္မ",
+  "အဂ္ဂိ",
   "အဂ္ဂ",
   "မဟာ",
   "ဇောတိကဓဇ",
@@ -22,6 +24,11 @@ final List<String> allPrefixes = [
   "သရေ",
   "စည်သူ",
   "သီဟသူရ",
+  "သူရင်း",
+  "သူရဲ",
+  "သူရိန်",
+  "သူရိယ",
+  "သူရသ္သ",
   "သူရ",
   "သီရိပျံချီ",
   "သီရိ",
@@ -45,20 +52,20 @@ final List<String> allPrefixes = [
   "ဒုတိယအရာခံဗိုလ်",
   "ဒုအရာခံဗိုလ်",
   "အရာခံဗိုလ်",
-  "ဒုတိယဗိုလ်",
-  "ဒုဗိုလ်",
   "ဗိုလ်ကြီး",
-  "ဗိုလ်မှူး",
   "ဒုတိယဗိုလ်မှူးကြီး",
   "ဒုဗိုလ်မှူးကြီး",
   "ဗိုလ်မှူးကြီး",
   "ဗိုလ်မှူးချုပ်",
-  "ဗိုလ်ချုပ်",
+  "ဗိုလ်မှူး",
   "ဒုဗိုလ်ချုပ်ကြီး",
   "ဒုတိယဗိုလ်ချုပ်ကြီး",
+  "ဒုတိယဗိုလ်",
   "ဗိုလ်ချုပ်ကြီး",
   "ဒုတိယဗိုလ်ချုပ်မှူးကြီး",
   "ဗိုလ်ချုပ်မှူးကြီး",
+  "ဒုဗိုလ်",
+  "ဗိုလ်ချုပ်",
   "ဒေါ်",
 ];
 
@@ -70,6 +77,7 @@ String preprocess(String text) {
       .replaceAll("ဥူး", "အူး")
       .replaceAll("\u1026", "အူ")
       .replaceAll("ဥူ", "အူ")
+      .replaceAll("ဥုံ", "အုမ်")
       .replaceAll("ဥု", "အူ")
       .replaceAll("ဥ", "အု")
       .replaceAll("န်ုပ်", "န်နုပ်")
@@ -117,12 +125,16 @@ String flattenStack(String text) {
       }
     }
   }
+  debugPrint("---------------$text");
   return text;
 }
 
-String getMMMapping(String label) {
+String getMMMapping(Map<String, String> wordDict, String label) {
   String myanGlish;
   MmTranscriptor transcriptor = MmTranscriptor();
+  if (wordDict.containsKey(label)) {
+    myanGlish = wordDict[label]!;
+  }
   myanGlish = transcriptor.transcript(label);
   return myanGlish;
 }
@@ -146,9 +158,11 @@ String getIntermediateMap(
     mappedWord = finalSyllableList
         .asMap()
         .entries
-        .map((entry) => getMMMapping(entry.value))
+        .map((entry) => getMMMapping(wordDict, entry.value))
         .join('');
+    debugPrint("-------------$finalSyllableList");
   }
+
   return mappedWord.capitalize();
 }
 
@@ -165,7 +179,7 @@ String getPrefixSpilittedMap(String text, Map<String, String> wordDict) {
     mappedWord = syllableList
         .asMap()
         .entries
-        .map((entry) => getMMMapping(entry.value))
+        .map((entry) => getMMMapping(wordDict, entry.value))
         .join('');
   } else {
     List<String> syllableList = syllableSplit(text);
