@@ -4,12 +4,14 @@ class CommentModel {
   final String id;
   final String content;
   final String author;
-  final String? parentId;
+  final String timestamp;
+  final List<CommentModel>? replies;
   CommentModel({
     required this.id,
     required this.content,
     required this.author,
-    this.parentId,
+    required this.timestamp,
+    this.replies = const [],
   });
 
   CommentModel copyWithReply(CommentModel reply) {
@@ -17,7 +19,8 @@ class CommentModel {
       id: id,
       content: content,
       author: author,
-      parentId: parentId,
+      timestamp: timestamp,
+      replies: List<CommentModel>.from(replies ?? [])..add(reply),
     );
   }
 
@@ -31,7 +34,8 @@ class CommentModel {
       id: id ?? this.id,
       content: content ?? this.content,
       author: author ?? this.author,
-      parentId: parentId ?? this.parentId,
+      timestamp: DateTime.now().toIso8601String(),
+      replies: replies ?? this.replies,
     );
   }
 
@@ -40,7 +44,6 @@ class CommentModel {
       'id': id,
       'content': content,
       'author': author,
-      'parentId': parentId,
     };
   }
 
@@ -49,7 +52,10 @@ class CommentModel {
       id: map['id'] ?? '',
       content: map['content'] ?? '',
       author: map['author'] ?? '',
-      parentId: map['parentId'] ?? '',
+      timestamp: map['timestamp'] ?? DateTime.now().toIso8601String(),
+      replies: (map['replies'] as List<dynamic>?)
+          ?.map((e) => CommentModel.fromMap(e as Map<String, dynamic>))
+          .toList(),
     );
   }
 
@@ -60,7 +66,7 @@ class CommentModel {
 
   @override
   String toString() {
-    return 'CommentModel(id: $id, content: $content, author: $author, parentId: $parentId)';
+    return 'CommentModel(id: $id, content: $content, author: $author, timestamp: $timestamp, replies: $replies)';
   }
 
   @override
@@ -70,11 +76,49 @@ class CommentModel {
     return other.id == id &&
         other.content == content &&
         other.author == author &&
-        other.parentId == parentId;
+        other.timestamp == timestamp &&
+        other.replies == replies;
   }
 
   @override
   int get hashCode {
-    return id.hashCode ^ content.hashCode ^ author.hashCode ^ parentId.hashCode;
+    return id.hashCode ^
+        content.hashCode ^
+        author.hashCode ^
+        timestamp.hashCode ^
+        replies.hashCode ^
+        replies.hashCode;
   }
 }
+
+/* class Comment {
+  final int id;
+  final User user;
+  final String content;
+  final String timestamp;
+  final List<Comment>? replies;
+  Comment({
+    required this.id,
+    required this.user,
+    required this.content,
+    required this.timestamp,
+    this.replies = const [],
+  });
+  factory Comment.fromJson(Map<String, dynamic> json) {
+    return Comment(
+      id: json['id'],
+      user: User.fromJson(json['user']),
+      content: json['comment'],
+      timestamp: json['timestamp'],
+      replies:
+          (json['replies'] as List?)?.map((e) => Comment.fromJson(e)).toList(),
+    );
+  }
+}
+
+class User {
+  final int id;
+  final String name;
+  final String? profilePic;
+  User({required this.id, required this.name, this.profilePic});
+} */
