@@ -35,7 +35,7 @@ class CommentModel {
       content: content ?? this.content,
       author: author ?? this.author,
       timestamp: DateTime.now().toIso8601String(),
-      replies: replies ?? this.replies,
+      replies: replies ?? replies,
     );
   }
 
