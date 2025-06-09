@@ -16,6 +16,7 @@ final List<String> allPrefixes = [
   "သုဓမ္မ",
   "အဂ္ဂိ",
   "အဂ္ဂ",
+  "မဟာကထာနံ",
   "မဟာ",
   "ဇောတိကဓဇ",
   "သဒ္ဓမ္မဇောတိကဓဇ",
@@ -28,8 +29,9 @@ final List<String> allPrefixes = [
   "သူရဲ",
   "သူရိန်",
   "သူရိယ",
-  "သူရသ္သ",
+  "သူရသ္သတီ",
   "သူရဇ္ဇ",
+  "သူရာ",
   "သူရ",
   "သီရိပျံချီ",
   "သီရိ",
@@ -41,32 +43,32 @@ final List<String> allPrefixes = [
   "ဇာနည်",
   "လမ်းစဉ်ဇာနည်",
   "ပညာဗလ",
-  "တပ်သားသစ်",
-  "တပ်သား",
-  "ဒုတိယတပ်ကြပ်",
-  "ဒုတပ်ကြပ်",
-  "တပ်ကြပ်ကြီးစာရေး",
-  "တပ်ကြပ်ကြီး",
-  "တပ်ကြပ်",
-  "အုပ်ခွဲတပ်ကြပ်ကြီး",
-  "တပ်ခွဲတပ်ကြပ်ကြီး",
-  "ဒုတိယအရာခံဗိုလ်",
-  "ဒုအရာခံဗိုလ်",
-  "အရာခံဗိုလ်",
-  "ဗိုလ်ကြီး",
-  "ဒုတိယဗိုလ်မှူးကြီး",
-  "ဒုဗိုလ်မှူးကြီး",
-  "ဗိုလ်မှူးကြီး",
-  "ဗိုလ်မှူးချုပ်",
-  "ဗိုလ်မှူး",
-  "ဒုဗိုလ်ချုပ်ကြီး",
-  "ဒုတိယဗိုလ်ချုပ်ကြီး",
-  "ဒုတိယဗိုလ်",
-  "ဗိုလ်ချုပ်ကြီး",
-  "ဒုတိယဗိုလ်ချုပ်မှူးကြီး",
-  "ဗိုလ်ချုပ်မှူးကြီး",
-  "ဒုဗိုလ်",
-  "ဗိုလ်ချုပ်",
+  // "တပ်သားသစ်",
+  // "တပ်သား",
+  // "ဒုတိယတပ်ကြပ်",
+  // "ဒုတပ်ကြပ်",
+  // "တပ်ကြပ်ကြီးစာရေး",
+  // "တပ်ကြပ်ကြီး",
+  // "တပ်ကြပ်",
+  // "အုပ်ခွဲတပ်ကြပ်ကြီး",
+  // "တပ်ခွဲတပ်ကြပ်ကြီး",
+  // "ဒုတိယအရာခံဗိုလ်",
+  // "ဒုအရာခံဗိုလ်",
+  // "အရာခံဗိုလ်",
+  // "ဗိုလ်ကြီး",
+  // "ဒုတိယဗိုလ်မှူးကြီး",
+  // "ဒုဗိုလ်မှူးကြီး",
+  // "ဗိုလ်မှူးကြီး",
+  // "ဗိုလ်မှူးချုပ်",
+  // "ဗိုလ်မှူး",
+  // "ဒုဗိုလ်ချုပ်ကြီး",
+  // "ဒုတိယဗိုလ်ချုပ်ကြီး",
+  // "ဒုတိယဗိုလ်",
+  // "ဗိုလ်ချုပ်ကြီး",
+  // "ဒုတိယဗိုလ်ချုပ်မှူးကြီး",
+  // "ဗိုလ်ချုပ်မှူးကြီး",
+  // "ဒုဗိုလ်",
+  // "ဗိုလ်ချုပ်",
   "ဒေါ်",
 ];
 
@@ -120,13 +122,14 @@ String flattenStack(String text) {
       } else {
         text = text.replaceAllMapped(pattern, (match) {
           // Flatten stack: convert to consonant + Virama (်)
-          String top = '${match.group(1)!}\u1038';
+          // String top = '${match.group(1)!}\u1038';
+          String top = match.group(1)!;
           return top;
         });
       }
     }
   }
-  debugPrint("---------------$text");
+  debugPrint("---------------in flattern $text");
   return text;
 }
 
@@ -147,21 +150,26 @@ String getIntermediateMap(
     mappedWord = "u";
   } else if ((mergedLabel == "မောင်") && index == 0) {
     mappedWord = "mg";
-  } else if (mergedLabel == "ဗိုလ်ကြီး" && index == 0) {
-    mappedWord = "captain";
-  } else if (mergedLabel == "ဗိုလ်" && index == 0) {
-    mappedWord = "lieutenant";
+  } else if (mergedLabel == "အ" && index == 0) {
+    mappedWord = "a";
+    // } else if (mergedLabel == "ဗိုလ်" && index == 0) {
+    //   mappedWord = "lieutenant";
   } else if (wordDict.containsKey(mergedLabel) && wordDict[mergedLabel] != "") {
     mappedWord = wordDict[mergedLabel]!.capitalize();
+    debugPrint("-------------True");
   } else {
     String flattenedText = flattenStack(mergedLabel);
+    // .replaceAll("ဉ်ဉ်", "ည်");
+    // if (flattenedText == "ဉ်ဉ") {
+    //   flattenedText = "ည";
+    // }
     List<String> finalSyllableList = syllableSplit(flattenedText);
     mappedWord = finalSyllableList
         .asMap()
         .entries
         .map((entry) => getMMMapping(wordDict, entry.value))
         .join('');
-    debugPrint("-------------$finalSyllableList");
+    debugPrint("-------------final $finalSyllableList");
   }
 
   return mappedWord.capitalize();
@@ -172,9 +180,15 @@ String getPrefixSpilittedMap(String text, Map<String, String> wordDict) {
 
   if (wordDict.containsKey(text) && wordDict[text] != "") {
     mappedWord = wordDict[text]!.capitalize();
+    debugPrint("-------------getPrefixSpilittedMap True");
   } else if (wordDict.containsKey(text) && wordDict[text] == "") {
+    debugPrint("-------------getPrefixSpilittedMap ၂ True");
     // Step 2: Flatten the stacked characters
     String flattenedText = flattenStack(text);
+    // .replaceAll("ဉ်ဉ်", "ည်");
+    // if (flattenedText == "ဉ်ဉ") {
+    //   flattenedText = "ည";
+    // }
 
     List<String> syllableList = syllableSplit(flattenedText);
     mappedWord = syllableList
@@ -206,6 +220,7 @@ String getMap(String text, Map<String, String> wordDict) {
   while (index < text.length) {
     String splittedText = splitPrefixName(remaining, allPrefixes);
     prefixSpilttedString.add(splittedText);
+    debugPrint("--------------prefixSpilttedString: $prefixSpilttedString");
     remaining = remaining.substring(splittedText.length);
     index += splittedText.length;
   }

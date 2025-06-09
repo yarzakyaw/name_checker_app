@@ -50,7 +50,6 @@ class MmTranscriptor {
   };
 
   final Map<String, String> specialCharsForm = {
-    "အ": "a",
     "၁": "1",
     "၂": "2",
     "၃": "3",
@@ -210,6 +209,8 @@ class MmTranscriptor {
     "\u1031\u102b\u101e\u103a": "auk", // ကေါသ်
     "\u1031\u102b\u101f\u103a": "aun", // ကေါဟ်
     ///////////////
+    "\u1031\u101e\u103a": "it", // ကေသ်
+    ///////////////
     "\u103e\u1031\u1010\u103a": "it", // ကှေတ်
     //////////////
     "\u1031\u1010\u103a": "it", // ကေတ်
@@ -302,7 +303,7 @@ class MmTranscriptor {
     "ှာဇ်": "it",
     "ှာဉ်း": "inn",
     "ှာဉ့်": "innt",
-    "ှာဉ်": "iin",
+    "ှာဉ်": "in",
     "ှာည်း": "ee",
     "ှာည့်": "ei",
     "ှာည်": "i",
@@ -338,7 +339,7 @@ class MmTranscriptor {
     "ာဇ်": "it",
     "ာဉ်း": "inn",
     "ာဉ့်": "innt",
-    "ာဉ်": "iin",
+    "ာဉ်": "in",
     "ာည်း": "ee",
     "ာည့်": "ei",
     "ာည်": "i",
@@ -473,6 +474,8 @@ class MmTranscriptor {
     "ိသ်": "eik",
     "ိဟ်": "ein",
     ///////////////
+    "ိံ": "ein",
+    //////////////
     "ှုက်": "oak",
     "ှုဂ်": "oak",
     "ှုင်း": "one",
@@ -837,6 +840,7 @@ class MmTranscriptor {
   };
 
   final Map<String, String> vowelExtendedForm = {
+    "ှဲ": "el", // အ
     "ို့": "oh", // အို့
     "ှို့": "oh", // အှို့
     "ိုး": "oe",
@@ -1214,7 +1218,7 @@ class MmTranscriptor {
           i += 2;
         } else {
           if (char.contains('အ')) {
-            output.add("${specialCharsForm[char]!}h");
+            output.add("ah");
           } else {
             output.add("${singleton[char]!}a");
           }
@@ -1225,7 +1229,7 @@ class MmTranscriptor {
 
       // Rule 0.1: Special Character Form
       else if (specialCharsForm.containsKey(char)) {
-        output.add('${specialCharsForm[char]!}h');
+        output.add(specialCharsForm[char]!);
         i++;
         // debugPrint('rule 0.1: Special Character Form');
       }

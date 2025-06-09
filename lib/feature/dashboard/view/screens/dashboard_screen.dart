@@ -132,7 +132,20 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
             SizedBox(height: kIsWeb ? 130 : 200),
             Text(
-              "Name Transcription System",
+              // "Name Transcription System",
+              "မြန်မာနာမည် စာလုံးပေါင်းကို အင်္ဂလိပ်အက္ခရာဖလှယ်ခြင်း (Romanization of Myanmar Names) စနစ်",
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: kIsWeb ? 20 : 15,
+                  color: AppPallete.gradient6),
+            ),
+            // SizedBox(height: 10),
+            /* Text(
+              // "အမည်စာလုံးပေါင်းဖလှယ်ခြင်းနည်းစနစ်",
+              "မြန်မာ နာမည် စာလုံးပေါင်းကို အင်္ဂလိပ်အက္ခရာဖလှယ်ခြင်း",
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
               textAlign: TextAlign.center,
@@ -140,18 +153,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   fontWeight: FontWeight.w500,
                   fontSize: kIsWeb ? 25 : 20,
                   color: AppPallete.gradient6),
-            ),
-            SizedBox(height: 10),
-            Text(
-              "အမည်စာလုံးပေါင်းဖလှယ်ခြင်းနည်းစနစ်",
-              overflow: TextOverflow.ellipsis,
-              maxLines: 2,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: kIsWeb ? 25 : 20,
-                  color: AppPallete.gradient6),
-            ),
+            ), */
             SizedBox(height: 30),
             Padding(
               padding: const EdgeInsets.only(left: 20.0, right: 20.0),

@@ -16,7 +16,7 @@ class MmVowelTable extends StatelessWidget {
         "အမည် သာဓက",
         "အင်္ဂလိပ်အက္ခရာ ဖလှယ်နည်း သာဓက"
       ],
-      ["၁", "အ", "/a/", "a", "အချစ်", "A Chit"],
+      ["၁", "အ", "/a/", "a", "အချစ်", "Achit"],
       ["၂", "အာ", "/a/", "ar", "အာကာမျိုး", "Ar Kar Myoe"],
       ["၃", "အ", "/a./", "ah", "မောင်အ", "Mg Ah"],
       ["၄", "အား", "/a:/", "arr", "ဦးဖိုးကျား", "U Phoe Kyarr"],
@@ -37,14 +37,7 @@ class MmVowelTable extends StatelessWidget {
         "Ei Ei Chun/ Phoo Pyei Khaing/ Ei Nandar Kyawt"
       ],
       ["၇", "အီး / အည်း", "/i:/", "ee", "နတ်သမီး", "Nat Tha Mee"],
-      [
-        "၈",
-        "အူ / ဦ",
-        "/u/",
-        "uu",
-        "သူဇာ/မူမူခိုင်",
-        "Thuu Zar/ Muu Muu Khaing"
-      ],
+      ["၈", "အူ / ဦ", "/u/", "uu", "သူဇာ/မူမူခိုင်", "Thuuzar/ Muu Muu Khaing"],
       ["၉", "အု / ဥ", "/u./", "ou/u", "ရွှေဥ/ယုယု", "Shway Ou/Yu Yu"],
       [
         "၁၀",
@@ -205,8 +198,8 @@ class MmVowelTable extends StatelessWidget {
         "အုန် / အုမ် / အုံ",
         "/oun/",
         "ohn/ohm/ oun/oum",
-        "ပြည်စုန်မင်း/ ဥမ္မာခင်/ ဆီမီးခုံ",
-        "Pyi Soun Minn/Ohmmar Khin/Hsi Mee Khoum"
+        "ပြည်စုန်မင်း/ ဥမ္မာခင်/ ခုံတော်",
+        "Pyi Soun Minn/Ohmmar Khin/Khoum Taw"
       ],
       [
         "၄၆",
