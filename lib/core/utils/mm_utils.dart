@@ -129,17 +129,20 @@ String flattenStack(String text) {
       }
     }
   }
-  debugPrint("---------------in flattern $text");
+  // debugPrint("---------------in flattern $text");
   return text;
 }
 
-String getMMMapping(Map<String, String> wordDict, String label) {
+String getMMMapping(Map<String, String> wordDict, String label, int index) {
   String myanGlish;
   MmTranscriptor transcriptor = MmTranscriptor();
-  if (wordDict.containsKey(label)) {
+  if (label == "အ" && index == 0) {
+    myanGlish = "a";
+  } else if (wordDict.containsKey(label)) {
     myanGlish = wordDict[label]!;
+  } else {
+    myanGlish = transcriptor.transcript(label);
   }
-  myanGlish = transcriptor.transcript(label);
   return myanGlish;
 }
 
@@ -156,7 +159,7 @@ String getIntermediateMap(
     //   mappedWord = "lieutenant";
   } else if (wordDict.containsKey(mergedLabel) && wordDict[mergedLabel] != "") {
     mappedWord = wordDict[mergedLabel]!.capitalize();
-    debugPrint("-------------True");
+    // debugPrint("-------------True");
   } else {
     String flattenedText = flattenStack(mergedLabel);
     // .replaceAll("ဉ်ဉ်", "ည်");
@@ -167,9 +170,9 @@ String getIntermediateMap(
     mappedWord = finalSyllableList
         .asMap()
         .entries
-        .map((entry) => getMMMapping(wordDict, entry.value))
+        .map((entry) => getMMMapping(wordDict, entry.value, entry.key))
         .join('');
-    debugPrint("-------------final $finalSyllableList");
+    // debugPrint("-------------final $finalSyllableList");
   }
 
   return mappedWord.capitalize();
@@ -180,9 +183,9 @@ String getPrefixSpilittedMap(String text, Map<String, String> wordDict) {
 
   if (wordDict.containsKey(text) && wordDict[text] != "") {
     mappedWord = wordDict[text]!.capitalize();
-    debugPrint("-------------getPrefixSpilittedMap True");
+    // debugPrint("-------------getPrefixSpilittedMap True");
   } else if (wordDict.containsKey(text) && wordDict[text] == "") {
-    debugPrint("-------------getPrefixSpilittedMap ၂ True");
+    // debugPrint("-------------getPrefixSpilittedMap ၂ True");
     // Step 2: Flatten the stacked characters
     String flattenedText = flattenStack(text);
     // .replaceAll("ဉ်ဉ်", "ည်");
@@ -194,12 +197,12 @@ String getPrefixSpilittedMap(String text, Map<String, String> wordDict) {
     mappedWord = syllableList
         .asMap()
         .entries
-        .map((entry) => getMMMapping(wordDict, entry.value))
+        .map((entry) => getMMMapping(wordDict, entry.value, entry.key))
         .join('');
   } else {
     List<String> syllableList = syllableSplit(text);
     List<String> mergeList = mergeConsecutive(syllableList, wordDict);
-    debugPrint('mergeList: $mergeList');
+    // debugPrint('mergeList: $mergeList');
     mappedWord = mergeList
         .asMap()
         .entries
@@ -220,7 +223,7 @@ String getMap(String text, Map<String, String> wordDict) {
   while (index < text.length) {
     String splittedText = splitPrefixName(remaining, allPrefixes);
     prefixSpilttedString.add(splittedText);
-    debugPrint("--------------prefixSpilttedString: $prefixSpilttedString");
+    // debugPrint("--------------prefixSpilttedString: $prefixSpilttedString");
     remaining = remaining.substring(splittedText.length);
     index += splittedText.length;
   }

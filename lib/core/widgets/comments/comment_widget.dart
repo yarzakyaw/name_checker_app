@@ -1,4 +1,4 @@
-/* import 'package:flutter/foundation.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:name_checker_app/core/models/comment_model.dart';
@@ -90,6 +90,8 @@ class CommentWidget extends ConsumerWidget {
                   id: DateTime.now().toString(),
                   content: controller.text,
                   author: "You",
+                  parentId: 'top', // Top-level comment has no parent
+                  timestamp: DateTime.now().toIso8601String(),
                 );
                 ref
                     .read(commentNotifierProvider.notifier)
@@ -106,7 +108,7 @@ class CommentWidget extends ConsumerWidget {
       ),
     );
   }
-} */
+}
 
 /* import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

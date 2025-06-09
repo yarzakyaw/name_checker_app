@@ -1,61 +1,67 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
+
+import 'package:flutter/foundation.dart';
 
 class CommentModel {
   final String id;
+  final String parentId;
   final String content;
   final String author;
   final String timestamp;
   final List<CommentModel>? replies;
   CommentModel({
     required this.id,
+    required this.parentId,
     required this.content,
     required this.author,
     required this.timestamp,
-    this.replies = const [],
+    this.replies,
   });
-
-  CommentModel copyWithReply(CommentModel reply) {
-    return CommentModel(
-      id: id,
-      content: content,
-      author: author,
-      timestamp: timestamp,
-      replies: List<CommentModel>.from(replies ?? [])..add(reply),
-    );
-  }
 
   CommentModel copyWith({
     String? id,
+    String? parentId,
     String? content,
     String? author,
-    String? parentId,
+    String? timestamp,
+    List<CommentModel>? replies,
   }) {
     return CommentModel(
       id: id ?? this.id,
+      parentId: parentId ?? this.parentId,
       content: content ?? this.content,
       author: author ?? this.author,
-      timestamp: DateTime.now().toIso8601String(),
-      replies: replies ?? replies,
+      timestamp: timestamp ?? this.timestamp,
+      replies: replies ?? this.replies,
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
+      'parentId': parentId,
       'content': content,
       'author': author,
+      'timestamp': timestamp,
+      'replies': replies!.map((x) => x.toMap()).toList(),
     };
   }
 
   factory CommentModel.fromMap(Map<String, dynamic> map) {
     return CommentModel(
-      id: map['id'] ?? '',
-      content: map['content'] ?? '',
-      author: map['author'] ?? '',
-      timestamp: map['timestamp'] ?? DateTime.now().toIso8601String(),
-      replies: (map['replies'] as List<dynamic>?)
-          ?.map((e) => CommentModel.fromMap(e as Map<String, dynamic>))
-          .toList(),
+      id: map['id'] as String,
+      parentId: map['parentId'] as String,
+      content: map['content'] as String,
+      author: map['author'] as String,
+      timestamp: map['timestamp'] as String,
+      replies: map['replies'] != null
+          ? List<CommentModel>.from(
+              (map['replies'] as List<int>).map<CommentModel?>(
+                (x) => CommentModel.fromMap(x as Map<String, dynamic>),
+              ),
+            )
+          : null,
     );
   }
 
@@ -66,7 +72,7 @@ class CommentModel {
 
   @override
   String toString() {
-    return 'CommentModel(id: $id, content: $content, author: $author, timestamp: $timestamp, replies: $replies)';
+    return 'CommentModel(id: $id, parentId: $parentId, content: $content, author: $author, timestamp: $timestamp, replies: $replies)';
   }
 
   @override
@@ -74,19 +80,20 @@ class CommentModel {
     if (identical(this, other)) return true;
 
     return other.id == id &&
+        other.parentId == parentId &&
         other.content == content &&
         other.author == author &&
         other.timestamp == timestamp &&
-        other.replies == replies;
+        listEquals(other.replies, replies);
   }
 
   @override
   int get hashCode {
     return id.hashCode ^
+        parentId.hashCode ^
         content.hashCode ^
         author.hashCode ^
         timestamp.hashCode ^
-        replies.hashCode ^
         replies.hashCode;
   }
 }
